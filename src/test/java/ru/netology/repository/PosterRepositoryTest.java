@@ -1,4 +1,4 @@
-package ru.netology.data.repository;
+package ru.netology.repository;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -16,7 +16,7 @@ public class PosterRepository {
         size = arrayLength;
     }
 
-    public Poster[] getPosters() {
+    protected Poster[] getPosters() {
         return posters;
     }
 
