@@ -3,10 +3,11 @@ package ru.netology.repository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.Poster;
-import ru.netology.repository.PosterRepository;
+
 
 public class PosterRepositoryTest {
     PosterRepository repo = new PosterRepository();
+
     Poster poster1 = new Poster(1, "Зловещие мертвецы");
     Poster poster2 = new Poster(2, "Зловещие мертвецы 2");
     Poster poster3 = new Poster(3, "Зловещие мертвецы 3");
@@ -26,11 +27,12 @@ public class PosterRepositoryTest {
     @Test
 
     public void addPosters() {
-        repo.setPosters(poster1);
-        repo.setPosters(poster5);
-        repo.setPosters(poster4);
-        repo.setPosters(poster7);
-        repo.setPosters(poster9);
+
+        repo.save(poster1);
+        repo.save(poster5);
+        repo.save(poster4);
+        repo.save(poster7);
+        repo.save(poster9);
         Poster[] expected = {poster1, poster5, poster4, poster7, poster9};
         Poster[] actual = repo.getPosters();
         Assertions.assertArrayEquals(expected, actual);
@@ -39,20 +41,20 @@ public class PosterRepositoryTest {
 
     @Test
     public void findAll() {
-        repo.setPosters(poster1);
-        repo.setPosters(poster5);
-        repo.setPosters(poster4);
-        repo.setPosters(poster7);
-        repo.setPosters(poster9);
-        repo.setPosters(poster2);
-        repo.setPosters(poster3);
-        repo.setPosters(poster6);
-        repo.setPosters(poster8);
-        repo.setPosters(poster10);
-        repo.setPosters(poster11);
-        repo.setPosters(poster12);
-        repo.setPosters(poster13);
-        repo.setPosters(poster14);
+        repo.save(poster1);
+        repo.save(poster5);
+        repo.save(poster4);
+        repo.save(poster7);
+        repo.save(poster9);
+        repo.save(poster2);
+        repo.save(poster3);
+        repo.save(poster6);
+        repo.save(poster8);
+        repo.save(poster10);
+        repo.save(poster11);
+        repo.save(poster12);
+        repo.save(poster13);
+        repo.save(poster14);
 
         Poster[] expected = {poster1, poster5, poster4, poster7, poster9, poster2, poster3, poster6, poster8, poster10, poster11, poster12, poster13, poster14};
         Poster[] actual = repo.findAll();
@@ -62,61 +64,90 @@ public class PosterRepositoryTest {
 
     @Test
     public void findLastDefault() {
-        repo.setPosters(poster1);
-        repo.setPosters(poster5);
-        repo.setPosters(poster4);
-        repo.setPosters(poster7);
-        repo.setPosters(poster9);
-        repo.setPosters(poster2);
-        repo.setPosters(poster3);
-        repo.setPosters(poster6);
-        repo.setPosters(poster8);
-        repo.setPosters(poster10);
-        repo.setPosters(poster11);
-        repo.setPosters(poster12);
-        repo.setPosters(poster13);
-        repo.setPosters(poster14);
+        repo.save(poster1);
+        repo.save(poster5);
+        repo.save(poster4);
+        repo.save(poster7);
+        repo.save(poster9);
+        repo.save(poster2);
+        repo.save(poster3);
+        repo.save(poster6);
+        repo.save(poster8);
+        repo.save(poster10);
+        repo.save(poster11);
+        repo.save(poster12);
+        repo.save(poster13);
+        repo.save(poster14);
         Poster[] expected = {poster14, poster13, poster12, poster11, poster10, poster8, poster6, poster3, poster2, poster9};
         Poster[] actual = repo.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void findLastManual() {
+    public void findLastManualMoreLimit() {
         PosterRepository repo = new PosterRepository(4);
-        repo.setPosters(poster1);
-        repo.setPosters(poster5);
-        repo.setPosters(poster4);
-        repo.setPosters(poster7);
-        repo.setPosters(poster9);
-        repo.setPosters(poster2);
-        repo.setPosters(poster3);
-        repo.setPosters(poster6);
-        repo.setPosters(poster8);
-        repo.setPosters(poster10);
+        repo.save(poster1);
+        repo.save(poster5);
+        repo.save(poster4);
+        repo.save(poster7);
+        repo.save(poster9);
+        repo.save(poster2);
+        repo.save(poster3);
+        repo.save(poster6);
+        repo.save(poster8);
+        repo.save(poster10);
         Poster[] expected = {poster10, poster8, poster6, poster3};
         Poster[] actual = repo.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
 
+
+    @Test
+    public void findLastManualLimit() {
+        PosterRepository repo = new PosterRepository(4);
+
+        repo.save(poster11);
+        repo.save(poster12);
+        repo.save(poster13);
+        repo.save(poster14);
+        Poster[] expected = {poster14, poster13, poster12, poster11};
+        Poster[] actual = repo.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+
+    @Test
+    public void findLastManuallessThanTheLimit() {
+        PosterRepository repo = new PosterRepository(4);
+
+        repo.save(poster12);
+        repo.save(poster13);
+        repo.save(poster14);
+        Poster[] expected = {poster14, poster13, poster12, null};
+        Poster[] actual = repo.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
     @Test
     public void findLastElse() {
         PosterRepository repo = new PosterRepository(-1);
-        repo.setPosters(poster1);
-        repo.setPosters(poster5);
-        repo.setPosters(poster4);
-        repo.setPosters(poster7);
-        repo.setPosters(poster9);
-        repo.setPosters(poster2);
-        repo.setPosters(poster3);
-        repo.setPosters(poster6);
-        repo.setPosters(poster8);
-        repo.setPosters(poster10);
-        repo.setPosters(poster11);
-        repo.setPosters(poster12);
-        repo.setPosters(poster13);
-        repo.setPosters(poster14);
-        Poster[] expected = {poster14, poster13, poster12, poster11, poster10, poster8, poster6, poster3, poster2, poster9};
+        repo.save(poster1);
+        repo.save(poster5);
+        repo.save(poster4);
+        repo.save(poster7);
+        repo.save(poster9);
+        repo.save(poster2);
+        repo.save(poster3);
+        repo.save(poster6);
+        repo.save(poster8);
+        repo.save(poster10);
+        repo.save(poster11);
+        repo.save(poster12);
+        repo.save(poster13);
+        repo.save(poster14);
+        Poster[] expected = {};
         Poster[] actual = repo.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
