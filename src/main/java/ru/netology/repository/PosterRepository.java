@@ -4,6 +4,16 @@ import ru.netology.data.Poster;
 
 public class PosterRepository {
     private Poster[] posters = new Poster[0];
+
+
+    public PosterRepository() {
+        size = 10;
+    }
+
+    public PosterRepository(int arrayLength) {
+        size = arrayLength;
+    }
+
     private int size;
 
     public int getSize() {
@@ -12,19 +22,6 @@ public class PosterRepository {
 
     public void setSize(int size) {
         this.size = size;
-    }
-
-
-    public PosterRepository() {
-        size = 10;
-    }
-
-    public PosterRepository(int arrayLength) {
-        if (arrayLength >= 0) {
-            size = arrayLength;
-        } else {
-            size = 1;
-        }
     }
 
 
@@ -48,6 +45,10 @@ public class PosterRepository {
 
 
     public Poster[] findLast() {
+
+        if (size <= 0) {
+            size = 1;
+        }
 
         Poster[] all = getPosters();
         Poster[] tmp = new Poster[size];
