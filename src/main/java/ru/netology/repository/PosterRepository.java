@@ -15,19 +15,17 @@ public class PosterRepository {
     }
 
 
-
     public PosterRepository() {
         size = 10;
     }
 
     public PosterRepository(int arrayLength) {
-        if(arrayLength>=0){
-        size = arrayLength;
-        }else{
-            size =1;
+        if (arrayLength >= 0) {
+            size = arrayLength;
+        } else {
+            size = 1;
         }
     }
-
 
 
     protected Poster[] getPosters() {
