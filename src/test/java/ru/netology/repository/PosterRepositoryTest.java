@@ -3,10 +3,11 @@ package ru.netology.repository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.Poster;
-import ru.netology.repository.PosterRepository;
+
 
 public class PosterRepositoryTest {
     PosterRepository repo = new PosterRepository();
+
     Poster poster1 = new Poster(1, "Зловещие мертвецы");
     Poster poster2 = new Poster(2, "Зловещие мертвецы 2");
     Poster poster3 = new Poster(3, "Зловещие мертвецы 3");
@@ -26,6 +27,7 @@ public class PosterRepositoryTest {
     @Test
 
     public void addPosters() {
+
         repo.save(poster1);
         repo.save(poster5);
         repo.save(poster4);
@@ -82,7 +84,7 @@ public class PosterRepositoryTest {
     }
 
     @Test
-    public void findLastManual() {
+    public void findLastManualMoreLimit() {
         PosterRepository repo = new PosterRepository(4);
         repo.save(poster1);
         repo.save(poster5);
@@ -97,6 +99,35 @@ public class PosterRepositoryTest {
         Poster[] expected = {poster10, poster8, poster6, poster3};
         Poster[] actual = repo.findLast();
         Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    public void findLastManualLimit() {
+        PosterRepository repo = new PosterRepository(4);
+
+        repo.save(poster11);
+        repo.save(poster12);
+        repo.save(poster13);
+        repo.save(poster14);
+        Poster[] expected = {poster14, poster13, poster12, poster11};
+        Poster[] actual = repo.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+
+    @Test
+    public void findLastManuallessThanTheLimit() {
+        PosterRepository repo = new PosterRepository(4);
+
+        repo.save(poster12);
+        repo.save(poster13);
+        repo.save(poster14);
+        Poster[] expected = {poster14, poster13, poster12, null};
+        Poster[] actual = repo.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+
     }
 
     @Test
