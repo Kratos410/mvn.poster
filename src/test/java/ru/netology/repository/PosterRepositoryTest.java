@@ -124,12 +124,12 @@ public class PosterRepositoryTest {
         repo.save(poster12);
         repo.save(poster13);
         repo.save(poster14);
-        Poster[] expected = {poster14, poster13, poster12, null};
+
+        Poster[] expected = {poster14, poster13, poster12};
         Poster[] actual = repo.findLast();
         Assertions.assertArrayEquals(expected, actual);
 
     }
-
 
 
 }
