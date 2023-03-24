@@ -43,9 +43,8 @@ public class PosterRepository {
         posters = tmp;
     }
 
-
+/*
     public Poster[] findLast() {
-
         Poster[] all = getPosters();
         Poster[] tmp = new Poster[size];
 
@@ -55,6 +54,23 @@ public class PosterRepository {
         }
         return tmp;
     }
+    */
 
+    public Poster[] findLast() {
+        int resultLenght;
+        if (posters.length < size) {
+            resultLenght = posters.length;
+        } else {
+            resultLenght = size;
+        }
+        Poster[] all = getPosters();
+        Poster[] tmp = new Poster[resultLenght];
+        for (int i = 0; i < resultLenght; i++) {
+
+            tmp[i] = all[posters.length - 1 - i];
+        }
+        return tmp;
+
+    }
 }
 
