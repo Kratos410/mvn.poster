@@ -46,10 +46,6 @@ public class PosterRepository {
 
     public Poster[] findLast() {
 
-        if (size <= 0) {
-            size = 1;
-        }
-
         Poster[] all = getPosters();
         Poster[] tmp = new Poster[size];
 

@@ -130,26 +130,6 @@ public class PosterRepositoryTest {
 
     }
 
-    @Test
-    public void findLastElse() {
-        PosterRepository repo = new PosterRepository(-1);
-        repo.save(poster1);
-        repo.save(poster5);
-        repo.save(poster4);
-        repo.save(poster7);
-        repo.save(poster9);
-        repo.save(poster2);
-        repo.save(poster3);
-        repo.save(poster6);
-        repo.save(poster8);
-        repo.save(poster10);
-        repo.save(poster11);
-        repo.save(poster12);
-        repo.save(poster13);
-        repo.save(poster14);
-        Poster[] expected = {poster14};
-        Poster[] actual = repo.findLast();
-        Assertions.assertArrayEquals(expected, actual);
-    }
+
 
 }
